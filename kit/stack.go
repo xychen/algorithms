@@ -4,7 +4,7 @@ type Stack struct {
 	nums []int
 }
 
-func (s *Stack) New() *Stack {
+func NewStack() *Stack {
 	return &Stack{nums: []int{}}
 }
 
