@@ -1,3 +1,3 @@
-module github.com/xychen/algorithms
+module algorithms
 
 go 1.12

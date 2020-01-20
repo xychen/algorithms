@@ -1,7 +1,7 @@
 package problem0002
 
 import (
-	"github.com/xychen/algorithms/kit"
+	"algorithms/kit"
 )
 
 type ListNode = kit.ListNode
