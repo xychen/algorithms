@@ -1,8 +1,7 @@
-package main
+package problem02_03
 
-import "fmt"
-
-func find(ids []int) int {
+//寻找发帖水王
+func Find(ids []int) int {
 	count := 0
 	var condition int
 	for _, id := range ids {
@@ -18,10 +17,4 @@ func find(ids []int) int {
 		}
 	}
 	return condition
-}
-
-func main() {
-	arr := []int{1, 2, 2, 2, 3, 3, 2}
-	res := find(arr)
-	fmt.Println(res)
 }

@@ -1,17 +1,11 @@
-package main
-
-import (
-	"fmt"
-)
+package problem0003
 
 // leetCode官方解答： https://leetcode-cn.com/articles/longest-substring-without-repeating-characters/
 
 // 滑动窗口
 func lengthOfLongestSubstring(s string) int {
 	ht := make(map[byte]int)
-	ans := 0
-	low := 0
-	high := 0
+	ans, low, high := 0, 0, 0
 	n := len(s)
 	for low < n && high < n {
 		char := s[high]
@@ -51,11 +45,4 @@ func lengthOfLongestSubstring2(s string) int {
 		}
 	}
 	return ans
-}
-
-func main() {
-	str := "pwwkew"
-	res := lengthOfLongestSubstring(str)
-	res2 := lengthOfLongestSubstring2(str)
-	fmt.Println(res, res2)
 }

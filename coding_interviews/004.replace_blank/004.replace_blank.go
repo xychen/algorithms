@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package problem004
 
 //将字符串中的空格替换成%20
 func ReplaceBlank(s string) string {
@@ -30,10 +28,4 @@ func ReplaceBlank(s string) string {
 		op -= 1
 	}
 	return string(strByte)
-}
-
-func main() {
-	str := "we are happy"
-	str = ReplaceBlank(str)
-	fmt.Println(str)
 }
