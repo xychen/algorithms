@@ -25,3 +25,7 @@ func (s *Stack) Len() int {
 func (s *Stack) Empty() bool {
 	return len(s.nums) == 0
 }
+
+func (s *Stack) Top() int {
+	return s.nums[len(s.nums)-1]
+}

@@ -19,7 +19,7 @@ type question struct {
 	a ans
 }
 
-func TestPrintMatrixInCircle(t *testing.T) {
+func Test_PrintMatrixInCircle(t *testing.T) {
 	qs := []question{
 		question{p: parma{numbers: []int{1}, columns: 1, rows: 1}, a: ans{res: []int{1}}},
 		question{p: parma{numbers: []int{1, 2}, columns: 2, rows: 1}, a: ans{res: []int{1, 2}}},
@@ -42,7 +42,7 @@ func TestPrintMatrixInCircle(t *testing.T) {
 	}
 }
 
-func TestPrintMatrixClockwisely(t *testing.T) {
+func Test_PrintMatrixClockwisely(t *testing.T) {
 	qs := []question{
 		question{p: parma{numbers: []int{1}, columns: 1, rows: 1}, a: ans{res: []int{1}}},
 		question{p: parma{numbers: []int{1, 2}, columns: 2, rows: 1}, a: ans{res: []int{1, 2}}},
