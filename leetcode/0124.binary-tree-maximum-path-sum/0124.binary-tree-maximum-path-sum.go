@@ -1,8 +1,5 @@
 package problem0124
 
-//
-//Author: 陈星宇 <chenxingyu5@100tal.com>
-//Date: 2021-08-30 23:41:13
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
