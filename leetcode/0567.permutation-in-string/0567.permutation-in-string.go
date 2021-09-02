@@ -4,6 +4,10 @@ import (
 	"strings"
 )
 
+// 方法1:
+// 给你两个字符串 s1 和 s2 ，写一个函数来判断 s2 是否包含 s1 的排列。
+// 换句话说，s1 的排列之一是 s2 的 子串 。
+
 func checkInclusion(s1 string, s2 string) bool {
 	if s1 == "" {
 		return true
