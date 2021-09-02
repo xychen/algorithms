@@ -46,3 +46,27 @@ func lengthOfLongestSubstring2(s string) int {
 	}
 	return ans
 }
+
+//方法3： 滑动窗口模板套路
+func lengthOfLongestSubstring3(s string) int {
+	window := make(map[byte]int, 0)
+	left, right := 0, 0
+	maxLength := 0
+
+	for right < len(s) {
+		c := s[right]
+		right++
+		window[c]++
+
+		for window[c] > 1 {
+			d := s[left]
+			left++
+			window[d]--
+		}
+
+		if right-left > maxLength {
+			maxLength = right - left
+		}
+	}
+	return maxLength
+}
