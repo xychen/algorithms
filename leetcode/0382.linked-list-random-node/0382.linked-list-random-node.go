@@ -2,7 +2,7 @@ package problem0382
 
 // 给定一个单链表，随机选择链表的一个节点，并返回相应的节点值。保证每个节点被选的概率一样。
 // https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247484974&idx=1&sn=795a33c338d4a5bd8d265bc7f9f63c03&chksm=9bd7f826aca07130e303d3d6f5c901b8aa00f9c3d02ffc26d45b56f1d36b538990c9eebd06a8&scene=21#wechat_redirect
-// 当你遇到第i个元素时，应该有1/i的概率选择该元素，1 - 1/i的概率保持原有的选择
+// 当你遇到第i个元素时，应该有1/i的概率选择该元素，1 - 1/i的概率保持原有的选择 ， 1/i * (1 - 1/(i+1)) * （1 - /(i+2)）  =>  1/n
 
 import "math/rand"
 
