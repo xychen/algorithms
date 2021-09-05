@@ -23,12 +23,17 @@ func Constructor(m int, n int) Solution {
 
 func (this *Solution) Flip() []int {
 	randomV := rand.Intn(this.remain)
-	if _, ok := this.ht[randomV]; !ok {
-		this.ht[randomV] = randomV
+	// if _, ok := this.ht[randomV]; !ok {
+	// 	this.ht[randomV] = randomV
+	// }
+	realIndex := randomV
+	if _, ok := this.ht[randomV]; ok {
+		//修改为实际的位置
+		realIndex = this.ht[randomV]
 	}
-	realIndex := this.ht[randomV]
 	this.remain--
-	//交换位置(左侧是值为0的， 右侧是值为1)
+	//和最后一个为0的交换位置(左侧是值全为0的， 右侧是值全为1)
+	//*** this.ht[this.remain]也有可能已经有数据了 ***
 	if _, ok := this.ht[this.remain]; !ok {
 		this.ht[this.remain] = this.remain
 	}
