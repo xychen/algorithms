@@ -24,29 +24,21 @@ func binaryTreePaths(root *TreeNode) []string {
 	backtrack(root, path)
 	return res
 }
-
-func backtrack(root *TreeNode, path []string) {
-	if root == nil {
-		return
-	}
+func backtrack(root *TreeNode, valPath []string) {
 	if root.Left == nil && root.Right == nil {
-		res = append(res, strings.Join(path, "->"))
+		res = append(res, strings.Join(valPath, "->"))
 		return
 	}
-	if root.Left != nil {
+
+	children := []*TreeNode{root.Left, root.Right}
+	for _, c := range children {
+		if c == nil {
+			continue
+		}
 		//做选择
-		path = append(path, strconv.Itoa(root.Left.Val))
-		//下一步决策
-		backtrack(root.Left, path)
+		valPath = append(valPath, strconv.Itoa(c.Val))
+		backtrack(c, valPath)
 		//回退
-		path = path[0 : len(path)-1]
-	}
-	if root.Right != nil {
-		//做选择
-		path = append(path, strconv.Itoa(root.Right.Val))
-		//下一步决策
-		backtrack(root.Right, path)
-		//回退
-		path = path[0 : len(path)-1]
+		valPath = valPath[0 : len(valPath)-1]
 	}
 }
