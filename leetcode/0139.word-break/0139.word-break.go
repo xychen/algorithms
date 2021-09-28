@@ -1,5 +1,7 @@
 package problem0139
 
+// 单词拆分
+
 import "strings"
 
 //动态规划解法
