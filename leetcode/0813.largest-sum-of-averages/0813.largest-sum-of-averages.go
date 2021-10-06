@@ -7,8 +7,29 @@ package problem0813
 
 // 解法一： 动归+压缩数组
 func largestSumOfAverages(nums []int, k int) float64 {
-	// @todo: 使用压缩数组
-	return float64(0)
+	n := len(nums)
+	sums := make([]int, n+1)
+	for i := 0; i < n; i++ {
+		sums[i+1] = sums[i] + nums[i]
+	}
+	// dp[i] 表示nums[i:]元素分成k组的最大分数
+	// dp(i, k) = max(dp(j, k - 1) + average(i, j - 1))， j > i
+	dp := make([]float64, n)
+	// k = 1时，dp[i]为平均值
+	for i := 0; i < n; i++ {
+		dp[i] = float64(sums[n]-sums[i]) / float64(n-i)
+	}
+	K := k
+	for k = 2; k <= K; k++ {
+		for i := 0; i < n; i++ {
+			// maxSingleGroupCount := (n - i) - k + 1
+			// i + maxSingleGroupCount => n - k + 1
+			for j := i + 1; j <= n-k+1; j++ {
+				dp[i] = max(dp[i], dp[j]+float64(sums[j]-sums[i])/float64(j-i))
+			}
+		}
+	}
+	return dp[0]
 }
 
 // 解法二： 动归+dp全数组
