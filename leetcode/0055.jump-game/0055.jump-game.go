@@ -40,7 +40,7 @@ func max(a, b int) int {
 }
 
 // 方法二：动态规划
-func canJump2(nums []int) bool {
+func canJump3(nums []int) bool {
 	n := len(nums)
 	dp := make([]bool, n)
 	dp[0] = true
