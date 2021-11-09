@@ -14,17 +14,17 @@
 ## 题目分类
 
 ### 二叉树
-[二叉树题单](https://leetcode-cn.com/problem-list/jvxH8e0C/)
+[二叉树leetcode题单](https://leetcode-cn.com/problem-list/jvxH8e0C/)
 
 ### 回溯
-[回溯题单](https://leetcode-cn.com/problem-list/v7gtwrSv)
+[回溯leetcode题单](https://leetcode-cn.com/problem-list/v7gtwrSv)
 
 ### 动态规划
-[动态规划题单](https://leetcode-cn.com/problem-list/PgGHdyoW)
+[动态规划leetcode题单](https://leetcode-cn.com/problem-list/PgGHdyoW)
 ### 贪心算法
-[贪心算法题单](https://leetcode-cn.com/problem-list/Gi5g2iZo)
+[贪心算法leetcode题单](https://leetcode-cn.com/problem-list/Gi5g2iZo)
 
-|分类|相关题号|是否完成|代码|备注|
+|分类|相关题号|done|代码|备注|
 |----|----|----|----|----|
 ||[455.分发饼干](https://leetcode-cn.com/problems/assign-cookies)|✅||easy|
 ||[376.摆动序列](https://leetcode-cn.com/problems/wiggle-subsequence)|✅|||
@@ -47,7 +47,25 @@
 
 ### 数组、链表、哈希表、字符串
 
-[数组、链表、哈希表、字符串题单]()
+[数组、链表、哈希表、字符串leetcode题单]()
+|分类|相关题号|done|代码|备注|
+|----|----|----|----|----|
+|数组|[704.二分查找](https://leetcode-cn.com/problems/binary-search)|✅||easy|
+|数组|[34.在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array)|✅||二分查找变种题，不用判断边界，使用pre变量|
+|数组|[27.移除元素](https://leetcode-cn.com/problems/remove-element)|✅||easy|
+|数组|[977.有序数组的平方](https://leetcode-cn.com/problems/squares-of-a-sorted-array)|✅||easy|
+|数组|[209.长度最小的子数组](https://leetcode-cn.com/problems/minimum-size-subarray-sum)|✅||双指针|
+|数组|[59.螺旋矩阵 II](https://leetcode-cn.com/problems/spiral-matrix-ii)|✅|||
+|数组|[31.下一个排列](https://leetcode-cn.com/problems/next-permutation/)|✅||跟排列有点关系|
+|数组|[169.多数元素](https://leetcode-cn.com/problems/majority-element)|✅|||
+|----|||||
+|链表|[203.移除链表元素](https://leetcode-cn.com/problems/remove-linked-list-elements)|✅||easy|
+|链表|[707.设计链表](https://leetcode-cn.com/problems/design-linked-list)|✅|||
+|链表|[206.反转链表](https://leetcode-cn.com/problems/reverse-linked-list)|✅||easy|
+|链表|[24.两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs)|✅|||
+|链表|[19.删除链表的倒数第 N 个结点](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list)|✅||fast走n+1步|
+|链表|[面试题 02.07.链表相交](https://leetcode-cn.com/problems/intersection-of-two-linked-lists-lcci)|✅||easy|
+|链表|[142.环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii)|✅|||
 
 ## 参考图书
 - [《labuladong的算法小抄》](https://book.douban.com/subject/35252621/)
