@@ -12,18 +12,22 @@ func hasPathSum(root *TreeNode, targetSum int) bool {
 	if root == nil {
 		return false
 	}
-	return doPathSum(root, targetSum)
-}
-
-func doPathSum(root *TreeNode, targetSum int) bool {
-	if root.Left == nil && root.Right == nil {
-		return targetSum == root.Val
+	res := false
+	var backTrack func(root *TreeNode, sum int)
+	backTrack = func(root *TreeNode, sum int) {
+		if res || (root.Left == nil && root.Right == nil) {
+			if sum == targetSum {
+				res = true
+			}
+			return
+		}
+		if root.Left != nil {
+			backTrack(root.Left, sum+root.Left.Val)
+		}
+		if root.Right != nil {
+			backTrack(root.Right, sum+root.Right.Val)
+		}
 	}
-	if root.Left != nil && doPathSum(root.Left, targetSum-root.Val) {
-		return true
-	}
-	if root.Right != nil && doPathSum(root.Right, targetSum-root.Val) {
-		return true
-	}
-	return false
+	backTrack(root, root.Val)
+	return res
 }

@@ -8,6 +8,7 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+// 递归法
 func searchBST(root *TreeNode, val int) *TreeNode {
 	if root == nil {
 		return nil
@@ -19,4 +20,18 @@ func searchBST(root *TreeNode, val int) *TreeNode {
 	} else {
 		return searchBST(root.Right, val)
 	}
+}
+
+// 迭代法
+func searchBST2(root *TreeNode, val int) *TreeNode {
+	for root != nil {
+		if root.Val == val {
+			return root
+		} else if root.Val > val {
+			root = root.Left
+		} else if root.Val < val {
+			root = root.Right
+		}
+	}
+	return nil
 }

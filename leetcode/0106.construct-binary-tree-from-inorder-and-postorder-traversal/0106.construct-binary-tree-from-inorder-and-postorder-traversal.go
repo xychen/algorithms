@@ -12,19 +12,17 @@ func buildTree(inorder []int, postorder []int) *TreeNode {
 	if len(inorder) != len(postorder) || len(inorder) == 0 {
 		return nil
 	}
-	rootVal := postorder[len(postorder)-1]
-	root := &TreeNode{Val: rootVal}
-	index := getIndex(inorder, rootVal)
-	leftLen := index
-	rightLen := len(inorder) - index - 1
-	root.Left = buildTree(inorder[0:leftLen], postorder[0:leftLen])
-	root.Right = buildTree(inorder[index+1:], postorder[leftLen:(leftLen+rightLen)])
+	v := postorder[len(postorder)-1]
+	index := getInorderIndex(inorder, v)
+	root := &TreeNode{Val: v}
+	root.Left = buildTree(inorder[0:index], postorder[0:index])
+	root.Right = buildTree(inorder[index+1:], postorder[index:len(postorder)-1])
 	return root
 }
 
-func getIndex(inorder []int, value int) int {
-	for i, v := range inorder {
-		if v == value {
+func getInorderIndex(nums []int, val int) int {
+	for i := 0; i < len(nums); i++ {
+		if nums[i] == val {
 			return i
 		}
 	}

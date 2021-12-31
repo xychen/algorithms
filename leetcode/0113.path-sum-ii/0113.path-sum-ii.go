@@ -8,39 +8,33 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-var res [][]int
-
 func pathSum(root *TreeNode, targetSum int) [][]int {
 	if root == nil {
-		return res
+		return [][]int{}
 	}
-	res = make([][]int, 0)
+	res := make([][]int, 0)
+	var backTrack func(root *TreeNode, sum int, path []int)
+	backTrack = func(root *TreeNode, sum int, path []int) {
+		if root.Left == nil && root.Right == nil {
+			if sum == 0 {
+				tmp := make([]int, len(path))
+				copy(tmp, path)
+				res = append(res, tmp)
+			}
+			return
+		}
+		if root.Left != nil {
+			path = append(path, root.Left.Val)
+			backTrack(root.Left, sum-root.Left.Val, path)
+			path = path[:len(path)-1]
+		}
+		if root.Right != nil {
+			path = append(path, root.Right.Val)
+			backTrack(root.Right, sum-root.Right.Val, path)
+			path = path[:len(path)-1]
+		}
+	}
 	path := []int{root.Val}
-	targetSum -= root.Val
-	backtrack(root, path, targetSum)
+	backTrack(root, targetSum-root.Val, path)
 	return res
-}
-
-func backtrack(root *TreeNode, path []int, targetSum int) {
-	if root.Left == nil && root.Right == nil {
-		if targetSum == 0 {
-			tmp := make([]int, len(path))
-			copy(tmp, path)
-			res = append(res, tmp)
-		}
-		return
-	}
-	children := []*TreeNode{root.Left, root.Right}
-	for _, c := range children {
-		if c == nil {
-			continue
-		}
-		//做选择
-		path = append(path, c.Val)
-		targetSum -= c.Val
-		backtrack(c, path, targetSum)
-		//回退
-		path = path[0 : len(path)-1]
-		targetSum += c.Val
-	}
 }

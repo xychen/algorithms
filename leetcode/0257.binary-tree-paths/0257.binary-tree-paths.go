@@ -13,32 +13,30 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-var res []string
-
 func binaryTreePaths(root *TreeNode) []string {
-	res = make([]string, 0)
 	if root == nil {
-		return res
+		return []string{}
+	}
+	res := make([]string, 0)
+	var preOrderTraveral func(root *TreeNode, path []string)
+	preOrderTraveral = func(root *TreeNode, path []string) {
+		if root.Left == nil && root.Right == nil {
+			str := strings.Join(path, "->")
+			res = append(res, str)
+			return
+		}
+		if root.Left != nil {
+			path = append(path, strconv.Itoa(root.Left.Val))
+			preOrderTraveral(root.Left, path)
+			path = path[:len(path)-1]
+		}
+		if root.Right != nil {
+			path = append(path, strconv.Itoa(root.Right.Val))
+			preOrderTraveral(root.Right, path)
+			path = path[:len(path)-1]
+		}
 	}
 	path := []string{strconv.Itoa(root.Val)}
-	backtrack(root, path)
+	preOrderTraveral(root, path)
 	return res
-}
-func backtrack(root *TreeNode, valPath []string) {
-	if root.Left == nil && root.Right == nil {
-		res = append(res, strings.Join(valPath, "->"))
-		return
-	}
-
-	children := []*TreeNode{root.Left, root.Right}
-	for _, c := range children {
-		if c == nil {
-			continue
-		}
-		//做选择
-		valPath = append(valPath, strconv.Itoa(c.Val))
-		backtrack(c, valPath)
-		//回退
-		valPath = valPath[0 : len(valPath)-1]
-	}
 }

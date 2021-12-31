@@ -8,13 +8,33 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+// 迭代法
+func invertTree2(root *TreeNode) *TreeNode {
+	if root == nil {
+		return root
+	}
+	stack := []*TreeNode{root}
+	for len(stack) > 0 {
+		top := len(stack) - 1
+		node := stack[top]
+		stack = stack[:top]
+		node.Left, node.Right = node.Right, node.Left
+		if node.Right != nil {
+			stack = append(stack, node.Right)
+		}
+		if node.Left != nil {
+			stack = append(stack, node.Left)
+		}
+	}
+	return root
+}
+
+// 递归法
 func invertTree(root *TreeNode) *TreeNode {
 	if root == nil {
-		return nil
+		return root
 	}
-	tmp := root.Left
-	root.Left = root.Right
-	root.Right = tmp
+	root.Left, root.Right = root.Right, root.Left
 	invertTree(root.Left)
 	invertTree(root.Right)
 	return root
