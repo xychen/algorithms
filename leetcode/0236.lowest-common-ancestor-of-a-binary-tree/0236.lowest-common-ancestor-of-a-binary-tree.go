@@ -9,21 +9,15 @@ type TreeNode struct {
 }
 
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
-	if root == nil {
-		return nil
-	}
-	if root == p || root == q {
+	if root == nil || root == p || root == q {
 		return root
 	}
-	left := lowestCommonAncestor(root.Left, p, q)
-	right := lowestCommonAncestor(root.Right, p, q)
-	if left != nil && right != nil {
+	n1 := lowestCommonAncestor(root.Left, p, q)
+	n2 := lowestCommonAncestor(root.Right, p, q)
+	if n1 != nil && n2 != nil {
 		return root
-	} else {
-		if left == nil {
-			return right
-		} else {
-			return left
-		}
+	} else if n1 == nil {
+		return n2
 	}
+	return n1
 }

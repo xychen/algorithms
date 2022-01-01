@@ -8,7 +8,30 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-//方法一
+// 迭代法
+func insertIntoBST1(root *TreeNode, val int) *TreeNode {
+	if root == nil {
+		return &TreeNode{Val: val}
+	}
+	cur, pre := root, root
+	for cur != nil {
+		pre = cur
+		if cur.Val >= val {
+			cur = cur.Left
+		} else {
+			cur = cur.Right
+		}
+	}
+	node := &TreeNode{Val: val}
+	if pre.Val >= val {
+		pre.Left = node
+	} else {
+		pre.Right = node
+	}
+	return root
+}
+
+//递归法
 func insertIntoBST(root *TreeNode, val int) *TreeNode {
 	if root == nil {
 		root = &TreeNode{Val: val}
@@ -21,7 +44,7 @@ func insertIntoBST(root *TreeNode, val int) *TreeNode {
 	return root
 }
 
-// 方法二：好理解的，不够简洁
+// 方法二：递归法，好理解的，不够简洁
 func insertIntoBST2(root *TreeNode, val int) *TreeNode {
 	if root == nil {
 		return &TreeNode{Val: val}
