@@ -44,3 +44,41 @@ func combinationSum2(candidates []int, target int) [][]int {
 	backtrack(target, 0, path)
 	return res
 }
+
+// 同层去重的另外一种写法
+func combinationSum2_2(candidates []int, target int) [][]int {
+	if len(candidates) <= 0 {
+		return [][]int{}
+	}
+	res := make([][]int, 0)
+	sort.Ints(candidates)
+	var backtrack func(target, startIndex int, path []int)
+	backtrack = func(target, startIndex int, path []int) {
+		if target == 0 {
+			tmpPath := make([]int, len(path))
+			copy(tmpPath, path)
+			res = append(res, tmpPath)
+			return
+		}
+		// 用于同层去重
+		visited := make(map[int]bool)
+		for i := startIndex; i < len(candidates); i++ {
+			// 剪枝
+			if target-candidates[i] < 0 {
+				break
+			}
+			// 同一层中，相同的数，保证左边的优先访问到
+			if _, ok := visited[candidates[i]]; ok {
+				continue
+			}
+			visited[candidates[i]] = true
+			path = append(path, candidates[i])
+			backtrack(target-candidates[i], i+1, path)
+			path = path[:len(path)-1]
+			// visited[i] = false  //注意这里，不用回退
+		}
+	}
+	path := make([]int, 0)
+	backtrack(target, 0, path)
+	return res
+}

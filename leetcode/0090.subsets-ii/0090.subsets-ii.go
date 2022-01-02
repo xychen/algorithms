@@ -8,29 +8,26 @@ import "sort"
 
 func subsetsWithDup(nums []int) [][]int {
 	sort.Ints(nums)
-	n := len(nums)
 	res := make([][]int, 0)
-	path := make([]int, 0)
-	visted := make([]bool, n)
+	visited := make([]bool, len(nums))
+	var backtrack func(nums []int, startIndex int, path []int)
+	backtrack = func(nums []int, startIndex int, path []int) {
+		tmpPath := make([]int, len(path))
+		copy(tmpPath, path)
+		res = append(res, tmpPath)
 
-	var solve func(start int, path []int)
-	solve = func(start int, path []int) {
-		tmp := make([]int, len(path))
-		copy(tmp, path)
-		res = append(res, tmp)
-
-		for i := start; i < n; i++ {
-			if visted[i] || (i > 0 && nums[i] == nums[i-1] && !visted[i-1]) {
+		for i := startIndex; i < len(nums); i++ {
+			if i > 0 && nums[i] == nums[i-1] && !visited[i-1] {
 				continue
 			}
-			visted[i] = true
+			visited[i] = true
 			path = append(path, nums[i])
-			solve(i+1, path)
-
+			backtrack(nums, i+1, path)
+			visited[i] = false
 			path = path[:len(path)-1]
-			visted[i] = false
 		}
 	}
-	solve(0, path)
+	path := make([]int, 0)
+	backtrack(nums, 0, path)
 	return res
 }

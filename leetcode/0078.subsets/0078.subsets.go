@@ -5,25 +5,20 @@ package problem0078
 // 解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。
 
 func subsets(nums []int) [][]int {
-	n := len(nums)
 	res := make([][]int, 0)
-	path := make([]int, 0)
+	var backtrack func(nums []int, startIndex int, path []int)
+	backtrack = func(nums []int, startIndex int, path []int) {
+		tmpPath := make([]int, len(path))
+		copy(tmpPath, path)
+		res = append(res, tmpPath)
 
-	var solve func(start int, path []int)
-	solve = func(start int, path []int) {
-		tmp := make([]int, len(path))
-		copy(tmp, path)
-		res = append(res, tmp)
-		if start >= n {
-			return
-		}
-
-		for i := start; i < n; i++ {
+		for i := startIndex; i < len(nums); i++ {
 			path = append(path, nums[i])
-			solve(i+1, path)
+			backtrack(nums, i+1, path)
 			path = path[:len(path)-1]
 		}
 	}
-	solve(0, path)
+	path := make([]int, 0)
+	backtrack(nums, 0, path)
 	return res
 }
