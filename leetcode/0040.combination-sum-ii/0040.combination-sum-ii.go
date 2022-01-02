@@ -8,35 +8,39 @@ package problem0040
 import "sort"
 
 func combinationSum2(candidates []int, target int) [][]int {
-	n := len(candidates)
+	if len(candidates) <= 0 {
+		return [][]int{}
+	}
 	res := make([][]int, 0)
-	path := make([]int, 0)
-	visited := make([]bool, n)
 	sort.Ints(candidates)
-	var solve func(target, start int, path []int)
-	solve = func(target, start int, path []int) {
+	// 下标 => 是否被访问
+	visited := make([]bool, len(candidates))
+	var backtrack func(target, startIndex int, path []int)
+	backtrack = func(target, startIndex int, path []int) {
 		if target == 0 {
-			tmp := make([]int, len(path))
-			copy(tmp, path)
-			res = append(res, tmp)
+			tmpPath := make([]int, len(path))
+			copy(tmpPath, path)
+			res = append(res, tmpPath)
 			return
 		}
-		if target < 0 {
-			return
-		}
-		for i := start; i < n; i++ {
-			if visited[i] || (i > 0 && candidates[i] == candidates[i-1] && !visited[i-1]) {
+
+		for i := startIndex; i < len(candidates); i++ {
+			// 剪枝
+			if target-candidates[i] < 0 {
+				break
+			}
+			// 同一层中，相同的数，保证左边的优先访问到
+			if i > 0 && candidates[i] == candidates[i-1] && !visited[i-1] {
 				continue
 			}
-			path = append(path, candidates[i])
 			visited[i] = true
-			solve(target-candidates[i], i+1, path)
-
-			visited[i] = false
+			path = append(path, candidates[i])
+			backtrack(target-candidates[i], i+1, path)
 			path = path[:len(path)-1]
+			visited[i] = false
 		}
 	}
-
-	solve(target, 0, path)
+	path := make([]int, 0)
+	backtrack(target, 0, path)
 	return res
 }

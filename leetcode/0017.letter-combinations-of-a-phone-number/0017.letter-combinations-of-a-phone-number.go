@@ -5,43 +5,37 @@ package problem0017
 
 // 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
 
-import "strings"
-
 func letterCombinations(digits string) []string {
+	if len(digits) == 0 {
+		return []string{}
+	}
+	dmap := map[byte][]byte{
+		'2': []byte{'a', 'b', 'c'},
+		'3': []byte{'d', 'e', 'f'},
+		'4': []byte{'g', 'h', 'i'},
+		'5': []byte{'j', 'k', 'l'},
+		'6': []byte{'m', 'n', 'o'},
+		'7': []byte{'p', 'q', 'r', 's'},
+		'8': []byte{'t', 'u', 'v'},
+		'9': []byte{'w', 'x', 'y', 'z'},
+	}
 	res := make([]string, 0)
-	n := len(digits)
-	if n == 0 {
-		return res
-	}
-	input := strings.Split(digits, "")
-	strmap := map[string][]string{
-		"2": []string{"a", "b", "c"},
-		"3": []string{"d", "e", "f"},
-		"4": []string{"g", "h", "i"},
-		"5": []string{"j", "k", "l"},
-		"6": []string{"m", "n", "o"},
-		"7": []string{"p", "q", "r", "s"},
-		"8": []string{"t", "u", "v"},
-		"9": []string{"w", "x", "y", "z"},
-	}
-	var solve func(starti int, path []string)
-	solve = func(starti int, path []string) {
-		if len(path) == n {
-			tmp := strings.Join(path, "")
-			res = append(res, tmp)
+	var backtrack func(digits string, starIndex int, path []byte)
+	backtrack = func(digits string, starIndex int, path []byte) {
+		if len(path) == len(digits) {
+			res = append(res, string(path))
 			return
 		}
-		for i := starti; i < n; i++ {
-			k := input[i]
-			for j := 0; j < len(strmap[k]); j++ {
-				path = append(path, strmap[k][j])
-				solve(i+1, path)
-				path = path[:len(path)-1]
-			}
-
+		numChar := digits[starIndex]
+		for _, char := range dmap[numChar] {
+			// 做选择
+			path = append(path, char)
+			backtrack(digits, starIndex+1, path)
+			// 回退
+			path = path[:len(path)-1]
 		}
 	}
-	path := make([]string, 0)
-	solve(0, path)
+	path := make([]byte, 0)
+	backtrack(digits, 0, path)
 	return res
 }
