@@ -49,6 +49,24 @@
 ### 回溯
 [回溯leetcode题单](https://leetcode-cn.com/problem-list/v7gtwrSv)
 
+|分类|相关题号|done|代码|备注|
+|----|----|----|----|----|
+|组合:选k个数|[77. 组合](https://leetcode-cn.com/problems/combinations/)|✅||1.startIndex<br/> 2.剪枝优化：已选择+剩余元素<k时|
+|组合:从1-9中选和为n的k个数|[216. 组合总和 III](https://leetcode-cn.com/problems/combination-sum-iii/)|✅||1.startIndex<br/> 2.剪枝优化：已选择+剩余元素<k时|
+|组合:从候选数组中选和为target的所有组合|[39. 组合总和](https://leetcode-cn.com/problems/combination-sum/)|✅||1.startIndex<br/> 2.对target做减操作，则不用累加 <br/> 3.剪枝：排序+如果target减操作后小于0，则跳出循环|
+|组合:从重复元素的候选数组中选和为target的所有组合|[40. 组合总和 II](https://leetcode-cn.com/problems/combination-sum-ii/)|✅||1.startIndex<br/> 2.对target做减操作，则不用累加<br/> 3.排序+同层去重 <br/> 4.剪枝:如果target减操作后小于0，则跳出循环|
+||[17. 电话号码的字母组合](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/)|✅|||
+||[131. 分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/)|✅||1.startIndex<br/> 2.判断回文|
+||[93. 复原 IP 地址](https://leetcode-cn.com/problems/restore-ip-addresses/)|✅||1.选择3个有效数字后，直接判断剩余的1个是否合法，可作为递归终止条件|
+|子集|[78. 子集](https://leetcode-cn.com/problems/subsets/)|✅||1.startIndex|
+|子集:输入数组有重复元素|[90. 子集 II](https://leetcode-cn.com/problems/subsets-ii/)|✅||1.startIndex <br/> 2.排序+同层去重|
+||[491. 递增子序列](https://leetcode-cn.com/problems/increasing-subsequences/)|✅||1.startIndex <br/> 2.同层去重使用局部变量|
+|全排列|[46. 全排列](https://leetcode-cn.com/problems/permutations/)|✅||1.标记数组|
+|全排列|[47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/)|✅||1.标记数组 <br/> 2.同层去重|
+||[51. N 皇后](https://leetcode-cn.com/problems/n-queens/)|✅|||
+||[37. 解数独](https://leetcode-cn.com/problems/sudoku-solver/)||||
+||[332. 重新安排行程](https://leetcode-cn.com/problems/reconstruct-itinerary/)||||
+
 ### 动态规划
 [动态规划leetcode题单](https://leetcode-cn.com/problem-list/PgGHdyoW)
 ### 贪心算法
