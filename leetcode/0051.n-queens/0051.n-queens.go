@@ -1,66 +1,70 @@
 package problem0051
 
-import "strings"
-
 //n皇后问题
 //输出：[[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]
 
-var res [][]string
-
 func solveNQueens(n int) [][]string {
-	res = make([][]string, 0)
-	//trace初始化
-	trace := make([][]string, n)
-	for i := 0; i < n; i++ {
-		trace[i] = make([]string, n)
-		for j := 0; j < n; j++ {
-			trace[i][j] = "."
+	res := make([][]string, 0)
+
+	var backtrack func(row int, selected [][]byte)
+	backtrack = func(row int, selected [][]byte) {
+		if row >= n {
+			tmplist := make([]string, n)
+			for i := 0; i < n; i++ {
+				tmplist[i] = string(selected[i])
+			}
+			res = append(res, tmplist)
+			return
+		}
+
+		for col := 0; col < n; col++ {
+			if !isValid(row, col, selected) {
+				continue
+			}
+			selected[row][col] = 'Q'
+			backtrack(row+1, selected)
+			selected[row][col] = '.'
 		}
 	}
-	backtrack(0, n, trace)
+
+	selected := make([][]byte, n)
+	for i := 0; i < n; i++ {
+		selected[i] = make([]byte, n)
+		for j := 0; j < n; j++ {
+			selected[i][j] = '.'
+		}
+	}
+	backtrack(0, selected)
 	return res
 }
 
-func backtrack(row, n int, trace [][]string) {
-	if n == row {
-		tmp := make([]string, n)
-		for i, items := range trace {
-			tmp[i] = strings.Join(items, "")
+func isValid(row, col int, matrix [][]byte) bool {
+	n := len(matrix)
+	// 竖方向
+	for i := 0; i < row; i++ {
+		if matrix[i][col] == 'Q' {
+			return false
 		}
-		res = append(res, tmp)
-		return
 	}
 
-	for column := 0; column < n; column++ {
-		if !isValid(row, column, trace) {
-			continue
+	// 左斜上方
+	i, j := row-1, col-1
+	for i >= 0 && j >= 0 {
+		if matrix[i][j] == 'Q' {
+			return false
 		}
-		//选择
-		trace[row][column] = "Q"
-		backtrack(row+1, n, trace)
-		//回退
-		trace[row][column] = "."
+		i--
+		j--
 	}
-}
 
-func isValid(row, col int, trace [][]string) bool {
-	//左上是否有
-	for i := 1; (row-i >= 0) && (col-i >= 0); i++ {
-		if trace[row-i][col-i] == "Q" {
+	// 右斜上方
+	i, j = row-1, col+1
+	for i >= 0 && j < n {
+		if matrix[i][j] == 'Q' {
 			return false
 		}
-	}
-	//同一列中是否有
-	for i := 1; row-i >= 0; i++ {
-		if trace[row-i][col] == "Q" {
-			return false
-		}
-	}
-	//右上是否有
-	for i := 1; (row-i >= 0) && (col+i) < len(trace); i++ {
-		if trace[row-i][col+i] == "Q" {
-			return false
-		}
+		i--
+		j++
 	}
 	return true
 }
