@@ -5,139 +5,108 @@ package problem0416
 
 // 方法一：dp+压缩空间
 func canPartition(nums []int) bool {
-	n := len(nums)
-	if n < 2 {
+	total, maxNum := 0, 0
+	for _, num := range nums {
+		total += num
+		maxNum = max(maxNum, num)
+	}
+	// 和为奇数 或 存在某个元素大于 total/2
+	if total%2 == 1 || maxNum > total/2 {
 		return false
 	}
-	sum, maxVal := 0, 0
-	for i := 0; i < n; i++ {
-		sum += nums[i]
-		if nums[i] > maxVal {
-			maxVal = nums[i]
-		}
+
+	bagWeight := total / 2 //背包容量
+	dp := make([]int, bagWeight+1)
+	for j := nums[0]; j <= bagWeight; j++ {
+		dp[j] = nums[0]
 	}
-	if sum%2 == 1 {
-		return false
-	}
-	sum = sum / 2
-	if maxVal > sum {
-		return false
-	}
-	// dp[i][j] 的意思是nums前i个元素，是否存在相加等于j的情况
-	// i等于0的时候，表示前0个元素，肯定是false
-	dp := make([]bool, sum+1)
-	dp[nums[0]] = true
-	for i := 1; i < n; i++ {
-		v := nums[i]
-		for j := sum; j >= 1; j-- {
-			// if v <= j { //不选 或 选 有一个ok就为true
-			// 	dp[j] = dp[j] || dp[j-v]
-			// }
-			if j == v {
-				dp[j] = true
-			} else if j > v {
-				dp[j] = dp[j] || dp[j-v]
+
+	for i := 1; i < len(nums); i++ {
+		for j := bagWeight; j >= 1; j-- {
+			if j-nums[i] > 0 {
+				dp[j] = max(dp[j], dp[j-nums[i]]+nums[i])
 			}
 		}
 	}
-	return dp[sum]
+	if dp[bagWeight] == bagWeight {
+		return true
+	}
+	return false
 }
 
 // 方法二：动态规划 （未压缩空间）
-
 func canPartition2(nums []int) bool {
-	n := len(nums)
-	if n < 2 {
+	total, maxNum := 0, 0
+	for _, num := range nums {
+		total += num
+		maxNum = max(maxNum, num)
+	}
+	// 和为奇数 或 存在某个元素大于 total/2
+	if total%2 == 1 || maxNum > total/2 {
 		return false
-	}
-	sum, maxVal := 0, 0
-	for i := 0; i < n; i++ {
-		sum += nums[i]
-		if nums[i] > maxVal {
-			maxVal = nums[i]
-		}
-	}
-	if sum%2 == 1 {
-		return false
-	}
-	sum = sum / 2
-	if maxVal > sum {
-		return false
-	}
-	// dp[i][j] 的意思是nums前i个元素，是否存在相加等于j的情况
-	dp := make([][]bool, n)
-	for i := 0; i <= n; i++ {
-		dp[i] = make([]bool, sum+1)
 	}
 
-	/**
-	* 边界情况
-	* 因为 【注意1】【注意2】，为了不特殊处理，可以通过增加一行，同时第0列设置为true即可
-	**/
+	bagWeight := total / 2 //背包容量
+	dp := make([][]int, len(nums))
+	for i := 0; i < len(nums); i++ {
+		dp[i] = make([]int, bagWeight+1)
+	}
+	for j := nums[0]; j <= bagWeight; j++ {
+		dp[0][j] = nums[0]
+	}
 
-	//注意1：优先处理好第0行，防止出现 i-1 等于负数的情况
-	dp[0][nums[0]] = true
-	for i := 1; i <= n; i++ {
-		v := nums[i]
-		for j := 1; j <= sum; j++ {
-			// 注意2：如果想把j==v 和 j > v 的情况合并，就需要特殊梳理一下 j=0的值（提前初始化成true）
-			if j == v {
-				//只选当前这个肯定是ok的
-				dp[i][j] = true
-			} else if j > v {
-				//不选 或 选 有一个ok就为true
-				dp[i][j] = dp[i-1][j] || dp[i-1][j-v]
-			} else { //不能选了
+	for i := 1; i < len(nums); i++ {
+		for j := 1; j <= bagWeight; j++ {
+			if j-nums[i] < 0 {
 				dp[i][j] = dp[i-1][j]
+			} else {
+				dp[i][j] = max(dp[i-1][j], dp[i-1][j-nums[i]]+nums[i])
 			}
 		}
 	}
-	return dp[n][sum]
-}
-
-// 方法三： 回溯 + 记忆化搜索
-var dp map[int]bool
-var sel []int
-
-func canPartition3(nums []int) bool {
-	sum := 0
-	for _, n := range nums {
-		sum += n
-	}
-	if sum%2 == 1 {
-		return false
-	}
-	sum = sum / 2
-	dp = make(map[int]bool)
-	sel = make([]int, len(nums))
-	return solve(nums, sum)
-}
-
-func solve(nums []int, target int) bool {
-	if target == 0 {
+	if dp[len(nums)-1][bagWeight] == bagWeight {
 		return true
 	}
-	if target < 0 {
+	return false
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+// 方法三：回溯 （会超时）
+func canPartition3(nums []int) bool {
+	total := sum(nums)
+	if total%2 == 1 {
 		return false
 	}
+	// 选择k个数，和等于 total/2
+	var backtrack func(nums []int, startIndex, target int) bool
+	backtrack = func(nums []int, startIndex, target int) bool {
+		if target == 0 {
+			return true
+		}
+		if startIndex >= len(nums) {
+			return false
+		}
 
-	if v, ok := dp[target]; ok {
-		return v
-	}
-	var res bool
-	for i, n := range nums {
-		if 1 == sel[i] {
-			continue
+		for i := startIndex; i < len(nums); i++ {
+			if backtrack(nums, i+1, target-nums[i]) {
+				return true
+			}
 		}
-		//做选择
-		sel[i] = 1
-		res = solve(nums, target-n)
-		if res == true {
-			break
-		}
-		//回退
-		sel[i] = 0
+		return false
 	}
-	dp[target] = res
-	return res
+	return backtrack(nums, 0, total/2)
+}
+
+func sum(nums []int) int {
+	total := 0
+	for _, num := range nums {
+		total += num
+	}
+	return total
 }
