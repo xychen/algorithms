@@ -2,23 +2,36 @@ package problem0279
 
 // 完全平方数
 
-import "math"
-
 func numSquares(n int) int {
-	if n == 1 {
-		return 1
+	coins := make([]int, 0)
+	for i := 1; i*i <= n; i++ {
+		coins = append(coins, i*i)
 	}
 	dp := make([]int, n+1)
-	dp[1] = 1
-	for i := 2; i <= n; i++ {
-		m := int(math.Floor(math.Sqrt(float64(i))))
-		dp[i] = i
-		for j := 1; j <= m; j++ {
-			dp[i] = min(dp[i], dp[i-j*j]+1)
+	for i := 1; i <= n; i++ {
+		dp[i] = n + 1
+	}
+	for _, coin := range coins {
+		for i := coin; i <= n; i++ {
+			dp[i] = min(dp[i], dp[i-coin]+1)
 		}
 	}
 	return dp[n]
 }
+
+// func numSquares(n int) int {
+//	   //可以不用提前生成coin
+//     dp := make([]int, n+1)
+//     for i := 1; i <= n; i++ {
+//         dp[i] = n+1
+//     }
+//     for i := 1; i*i <= n; i++ {
+//         for j := i*i; j <= n; j++ {
+//             dp[j] = min(dp[j], dp[j-i*i]+1)
+//         }
+//     }
+//     return dp[n]
+// }
 
 func min(a, b int) int {
 	if a < b {

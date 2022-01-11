@@ -5,22 +5,18 @@ package problem0139
 import "strings"
 
 //动态规划解法
+// 完全背包问题求排列，所以背包重量在外层循环
 func wordBreak(s string, wordDict []string) bool {
-	if len(s) == 0 {
-		return true
-	}
-	if len(wordDict) == 0 {
-		return false
-	}
-
 	dp := make([]bool, len(s)+1)
 	dp[0] = true
 	for i := 1; i <= len(s); i++ {
-		dp[i] = false
 		for _, word := range wordDict {
-			//从i往前推len(world)
-			if i-len(word) >= 0 && s[i-len(word):i] == word && dp[i-len(word)] {
+			if i < len(word) {
+				continue
+			}
+			if s[i-len(word):i] == word && dp[i-len(word)] {
 				dp[i] = true
+				break
 			}
 		}
 	}

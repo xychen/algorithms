@@ -17,6 +17,24 @@ func maxProfit(prices []int) int {
 	return ans
 }
 
+// 动态规划解法
+func maxProfit2(prices []int) int {
+	// dp[i][0]表示第i天持有股票的最大收益，dp[i][1]表示第i天不持有股票的最大收益
+	dp := make([][]int, 2)
+	for i := 0; i < 2; i++ {
+		dp[i] = make([]int, 2)
+	}
+	dp[0][0] = -prices[0]
+	dp[0][1] = 0
+	for i := 1; i < len(prices); i++ {
+		// 持有股票：当天买的(加上原来的收益)，或者前一天就持有
+		dp[i%2][0] = max(-prices[i]+dp[(i-1)%2][1], dp[(i-1)%2][0])
+		// 未持有股票：当天卖了，或者前一天就没持有
+		dp[i%2][1] = max(dp[(i-1)%2][0]+prices[i], dp[(i-1)%2][1])
+	}
+	return dp[(len(prices)-1)%2][1]
+}
+
 func max(a, b int) int {
 	if a > b {
 		return a
