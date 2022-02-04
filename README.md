@@ -68,9 +68,52 @@
 ||[332. 重新安排行程](https://leetcode-cn.com/problems/reconstruct-itinerary/)||||
 
 ### 动态规划
-[动态规划leetcode题单](https://leetcode-cn.com/problem-list/PgGHdyoW)
+[动态规划leetcode题单](https://leetcode-cn.com/problem-list/WgkqSsgU/)
+更多题目：[动态规划leetcode题单-花花酱](https://leetcode-cn.com/problem-list/PgGHdyoW)
+
+|分类|相关题号|done|代码|备注|
+|----|----|----|----|----|
+||[509. 斐波那契数](https://leetcode-cn.com/problems/fibonacci-number/)|✅|||
+||[70. 爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/submissions/)|✅|||
+||[746. 使用最小花费爬楼梯](https://leetcode-cn.com/problems/min-cost-climbing-stairs/)|✅||第一步不需要花费体力值，最后一步需要花费|
+||[62. 不同路径](https://leetcode-cn.com/problems/unique-paths/submissions/)|✅||二维dp，可压测成2行；还有数论方法|
+||[63. 不同路径 II](https://leetcode-cn.com/problems/unique-paths-ii/)|✅||必须使用二维dp|
+|☆|[343. 整数拆分](https://leetcode-cn.com/problems/integer-break/)|✅||最值是 dp[i]=max(dp[i], dp[i-j]*j, (i-j)*j), 不要遗忘(i-j)*j<br/>此题有贪心解法|
+||[96. 不同的二叉搜索树](https://leetcode-cn.com/problems/unique-binary-search-trees/)|✅||选择一个根节点，左子树的数量*右子树的数量，注意是乘法|
+|0-1背包|[416. 分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/)|✅||转化成挑选元素等于total/2的背包问题，物品重量和价值都是nums[i],如果最终重量等于价值，则存在|
+|☆0-1背包|[494. 目标和](https://leetcode-cn.com/problems/target-sum/)|✅||解法思路： left - right = target  =>  left - (sum-left) = target  =>  left = (sum+target)/2 ，即从数组中选出和为left的有多少种方法。<br/>dp数组的定义和普通背包问题略有不同|
+|☆0-1背包|[474. 一和零](https://leetcode-cn.com/problems/ones-and-zeroes/)|✅||背包重量是二维的|
+|完全背包，求组合数|[518. 零钱兑换 II](https://leetcode-cn.com/problems/coin-change-2/)|✅||如果单纯问“能否”凑成总和，遍历物品、遍历背包容量是没有顺序要求的。但是本题求组合数<br/>dp[j]：兑换金额为 amount 的时候，有多少种组合，等于所有 dp[j-coin] 之和|
+|完全背包，求排列数|[377. 组合总和 Ⅳ](https://leetcode-cn.com/problems/combination-sum-iv/)|✅||本题求排列数<br/>如果求组合数，外层for循环遍历物品、内层for循环遍历背包<br/>如果求排列数，外层for循环遍历背包、内层for循环遍历物品|
+||~~爬楼梯进阶版~~||||
+|完全背包，最少硬币数|[322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/)|✅||求最小，组合和排列都可以，物品在外层效率高一些|
+|完全背包，最少数量|[279. 完全平方数](https://leetcode-cn.com/problems/perfect-squares/)|✅||和求最少硬币数一样|
+|完全背包，求排列|[139. 单词拆分](https://leetcode-cn.com/problems/word-break/)|✅||完全背包问题求排列，所以背包重量在外层循环|
+|股票买卖|[121. 买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)|✅||dp[i][0] 表示第i天持有股票的最大收益（当天买入或者前一天就持有）， dp[i][1]表示不持有股票的最大收益（当天卖出，或者前一天就没持有)<br/>可用贪心算法：找曲线最低点和最高点|
+|股票买卖,可多次交易|[122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)|✅||dp[i][0] 表示第i天持有股票的最大收益， dp[i][1]表示不持有股票的最大收益<br/>可用贪心算法：多次找曲线最低点和最高点|
+|股票买卖,最多2次交易|[123. 买卖股票的最佳时机 III](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/)|✅||hard，有点绕|
+|股票买卖,最多k次交易|[188. 买卖股票的最佳时机 IV](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/)|✅||hard,可以从2次交易的推导过来|
+|股票买卖,有冷冻期|[309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)|✅||4种状态|
+|股票买卖,有手续费|[714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)|✅|||从多次交易中推导过来|
+|最长问题，输入单个数组|[300.最长递增子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/)|✅||||
+|最长问题，输入单个数组|[674. 最长连续递增序列](https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/)|✅|||只需要判断nums[i]和nums[i-1]<br/>有贪心解法|
+|编辑距离，最长问题，输入2个字符串(数组)|[718. 最长重复子数组](https://leetcode-cn.com/problems/maximum-length-of-repeated-subarray/)|✅|||二维dp，滚动数组注意清0|
+|编辑距离(只删)，最长问题|[1143. 最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/)|✅|||二维dp，text1[i-1]==text2[j-1]时，dp来源是dp[i-1][j-1]+1，否则来源是左or上的最大值|
+|编辑距离(只删)，最长问题|[1035.不相交的线](https://leetcode-cn.com/problems/uncrossed-lines/)|✅|||转换成求最长公共子序列|
+||[53. 最大子数组和](https://leetcode-cn.com/problems/maximum-subarray/)|✅||||
+|编辑距离(只删)|[392.判断子序列](https://leetcode-cn.com/problems/is-subsequence/)|✅|||转换成求最长公共子序列，如果长度等于s，则是他的子序列<br/>编辑距离中删除的思想<br/>有双指针解法|
+|编辑距离(只删)|[115.不同的子序列](https://leetcode-cn.com/problems/distinct-subsequences/)|✅|||hard，好难理解<br/> s[i-1]==t[j-1]时，dp[i][j]=dp[i-1][j-1]+dp[i-1][j],s[i-1] != t[j-1]时，dp[i][j]=dp[i-1][j]|
+|编辑距离(只删)|[583. 两个字符串的删除操作](https://leetcode-cn.com/problems/delete-operation-for-two-strings/)|✅|||求最小的删除次数，word1[i-1]==word2[j-1]时，dp[i][j]=dp[i-1][j-1],word1[i-1]!=word2[j-1]时, dp[i][j]=min(dp[i-1][j]+1, dp[i][j-1])+1, dp[i-1][j-1]+2)|
+|编辑距离(增、删、改)|[72. 编辑距离](https://leetcode-cn.com/problems/edit-distance/)|✅|||word1[i-1]==word2[j-1]时，dp[i][j]=dp[i-1][j-1],word1[i-1]!=word2[j-1]时, dp[i][j]=min(dp[i-1][j]+1, dp[i][j-1])+1, dp[i-1][j-1]+1)|
+||[647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/)|||<br/>还有双指针的解法|
+
+
 ### 贪心算法
 [贪心算法leetcode题单](https://leetcode-cn.com/problem-list/Gi5g2iZo)
+
+|分类|相关题号|done|代码|备注|
+|----|----|----|----|----|
+||[455. 分发饼干](https://leetcode-cn.com/problems/assign-cookies/)|✅||排序|
 
 |分类|相关题号|done|代码|备注|
 |----|----|----|----|----|
