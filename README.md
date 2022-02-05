@@ -8,6 +8,7 @@
   - [动态规划](#动态规划)
   - [贪心算法](#贪心算法)
   - [数组、链表、哈希表、字符串](#数组链表哈希表字符串)
+  - [图](#图)
 - [参考图书](#参考图书)
 - [其它参考](#其它参考)
 
@@ -113,15 +114,11 @@
 
 |分类|相关题号|done|代码|备注|
 |----|----|----|----|----|
-||[455. 分发饼干](https://leetcode-cn.com/problems/assign-cookies/)|✅||排序|
-
-|分类|相关题号|done|代码|备注|
-|----|----|----|----|----|
 ||[455.分发饼干](https://leetcode-cn.com/problems/assign-cookies)|✅||easy|
 ||[376.摆动序列](https://leetcode-cn.com/problems/wiggle-subsequence)|✅|||
 ||[53.最大子序和](https://leetcode-cn.com/problems/maximum-subarray)|✅||easy|
 ||[122.买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii)|✅||1.可以使用贪心（找低谷和峰值）<br> 2.使用动态规划|
-||[55.跳跃游戏](https://leetcode-cn.com/problems/jump-game)|✅||1.可以使用动态规划|
+||[55.跳跃游戏](https://leetcode-cn.com/problems/jump-game)|✅||注意终止条件|
 ||[45.跳跃游戏 II](https://leetcode-cn.com/problems/jump-game-ii)|✅||代码随想录的方法一好理解一点|
 ||[1005.K 次取反后最大化的数组和](https://leetcode-cn.com/problems/maximize-sum-of-array-after-k-negations)|✅||easy|
 ||[134.加油站](https://leetcode-cn.com/problems/gas-station)|✅||有点小技巧|
@@ -172,6 +169,58 @@
 |字符串|[剑指 Offer 58 - II.左旋转字符串](https://leetcode-cn.com/problems/zuo-xuan-zhuan-zi-fu-chuan-lcof)|✅||easy|
 |字符串|[28.实现 strStr()](https://leetcode-cn.com/problems/implement-strstr)|||KMP|
 |字符串|[459.重复的子字符串](https://leetcode-cn.com/problems/repeated-substring-pattern)|||KMP|
+
+
+### 图
+
+[图leetcode题单](https://leetcode-cn.com/problem-list/AOJgRUlL)
+
+|分类|相关题号|done|代码|备注|
+|----|----|----|----|----|
+||[133. 克隆图](https://leetcode-cn.com/problems/clone-graph/)|||队列+hashtable|
+|岛屿数量|[138. 复制带随机指针的链表](https://leetcode-cn.com/problems/copy-list-with-random-pointer/)|||队列+hashtable|
+|岛屿数量|[200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/)|||图+连通分量|
+|岛屿数量|[547. 省份数量](https://leetcode-cn.com/problems/number-of-provinces/)|||图+连通分量|
+|岛屿数量|[695. 岛屿的最大面积](https://leetcode-cn.com/problems/max-area-of-island/)|||图+连通分量|
+|岛屿数量|[733. 图像渲染](https://leetcode-cn.com/problems/flood-fill/)|||图+连通分量|
+|岛屿数量|[827. 最大人工岛](https://leetcode-cn.com/problems/making-a-large-island/)|||图+连通分量|
+|岛屿数量|[1162. 地图分析](https://leetcode-cn.com/problems/as-far-from-land-as-possible/)|||图+连通分量|
+||[841. 钥匙和房间](https://leetcode-cn.com/problems/keys-and-rooms/)|||DFS+连通分量|
+||[1202. 交换字符串中的元素](https://leetcode-cn.com/problems/smallest-string-with-swaps/)|||DFS+连通分量|
+||[207. 课程表](https://leetcode-cn.com/problems/course-schedule/)|||拓扑排序|
+||[210. 课程表 II](https://leetcode-cn.com/problems/course-schedule-ii/)|||拓扑排序|
+||[802. 找到最终的安全状态](https://leetcode-cn.com/problems/find-eventual-safe-states/)|||拓扑排序|
+||[399. 除法求值](https://leetcode-cn.com/problems/evaluate-division/)|||并查集|
+||[839. 相似字符串组](https://leetcode-cn.com/problems/similar-string-groups/)|||并查集|
+||[952. 按公因数计算最大组件大小](https://leetcode-cn.com/problems/largest-component-size-by-common-factor/)|||并查集|
+||[990. 等式方程的可满足性](https://leetcode-cn.com/problems/satisfiability-of-equality-equations/)|||并查集|
+||[721. 账户合并](https://leetcode-cn.com/problems/accounts-merge/)|||并查集|
+||[785. 判断二分图](https://leetcode-cn.com/problems/is-graph-bipartite/)|||二分图+图着色|
+||[886. 可能的二分法](https://leetcode-cn.com/problems/possible-bipartition/)||||
+||[1042. 不邻接植花](https://leetcode-cn.com/problems/flower-planting-with-no-adjacent/)||||
+||[997. 找到小镇的法官](https://leetcode-cn.com/problems/find-the-town-judge/)||||
+||[433. 最小基因变化](https://leetcode-cn.com/problems/minimum-genetic-mutation/)|||未加权的最短路径+BFS|
+||[815. 公交路线](https://leetcode-cn.com/problems/bus-routes/)|||未加权的最短路径+BFS|
+||[863. 二叉树中所有距离为 K 的结点](https://leetcode-cn.com/problems/all-nodes-distance-k-in-binary-tree/)|||未加权的最短路径+BFS|
+||[1129. 颜色交替的最短路径](https://leetcode-cn.com/problems/shortest-path-with-alternating-colors/)|||未加权的最短路径+BFS|
+||[1263. 推箱子](https://leetcode-cn.com/problems/minimum-moves-to-move-a-box-to-their-target-location/)|||未加权的最短路径+BFS|
+||[684. 冗余连接](https://leetcode-cn.com/problems/redundant-connection/)|||圈,并查集|
+||[685. 冗余连接 II](https://leetcode-cn.com/problems/redundant-connection-ii/)|||圈,并查集|
+||[1319. 连通网络的操作次数](https://leetcode-cn.com/problems/number-of-operations-to-make-network-connected/)|||圈,并查集|
+||[743. 网络延迟时间](https://leetcode-cn.com/problems/network-delay-time/)|||加权最短路径|
+||[787. K 站中转内最便宜的航班](https://leetcode-cn.com/problems/cheapest-flights-within-k-stops/)|||加权最短路径|
+||[882. 细分图中的可到达结点](https://leetcode-cn.com/problems/reachable-nodes-in-subdivided-graph/)|||加权最短路径|
+||[924. 尽量减少恶意软件的传播](https://leetcode-cn.com/problems/minimize-malware-spread/)|||加权最短路径|
+||[1334. 阈值距离内邻居最少的城市](https://leetcode-cn.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/)|||加权最短路径|
+||[847. 访问所有节点的最短路径](https://leetcode-cn.com/problems/shortest-path-visiting-all-nodes/)|||BFS|
+||[864. 获取所有钥匙的最短路径](https://leetcode-cn.com/problems/shortest-path-to-get-all-keys/)|||BFS|
+||[1298. 你能从盒子里获得的最大糖果数](https://leetcode-cn.com/problems/maximum-candies-you-can-get-from-boxes/)|||BFS|
+||[332. 重新安排行程](https://leetcode-cn.com/problems/reconstruct-itinerary/)|||欧拉路径|
+||[1192. 查找集群内的「关键连接」](https://leetcode-cn.com/problems/critical-connections-in-a-network/)|||强连通分量|
+||[943. 最短超级串](https://leetcode-cn.com/problems/find-the-shortest-superstring/)|||哈密顿路径|
+||[980. 不同路径 III](https://leetcode-cn.com/problems/unique-paths-iii/)|||哈密顿路径|
+||[996. 正方形数组的数目](https://leetcode-cn.com/problems/number-of-squareful-arrays/)|||哈密顿路径|
+||[959. 由斜杠划分区域](https://leetcode-cn.com/problems/regions-cut-by-slashes/)|||并查集/图+CCs|
 
 ## 参考图书
 - [《代码随想录》](https://book.douban.com/subject/35680544/)

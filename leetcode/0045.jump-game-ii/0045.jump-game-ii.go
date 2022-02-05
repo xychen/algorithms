@@ -8,26 +8,21 @@ package problem0045
 
 // 方法一：贪心算法
 func jump(nums []int) int {
-	n := len(nums)
-	// 当前覆盖范围，下一个覆盖范围
-	curDistance, nextDistance, ans := 0, 0, 0
-	for i := 0; i < n; i++ {
-		// 下一个覆盖范围
-		nextDistance = max(nums[i]+i, nextDistance)
-		// 本覆盖范围的临界点
-		if i == curDistance {
-			if i == n-1 { //已经到了最后一个节点
-				break
-			}
-			curDistance = nextDistance
-			ans++
-			// 已经覆盖了所有值
-			if curDistance >= n-1 {
-				break
-			}
+	if len(nums) <= 1 {
+		return 0
+	}
+	res, cover, nextCover := 1, nums[0], nums[0]
+	for i := 1; i < len(nums); i++ {
+		if cover >= len(nums)-1 {
+			break
+		}
+		nextCover = max(nextCover, i+nums[i])
+		if i >= cover {
+			res++
+			cover = nextCover
 		}
 	}
-	return ans
+	return res
 }
 
 func max(a, b int) int {

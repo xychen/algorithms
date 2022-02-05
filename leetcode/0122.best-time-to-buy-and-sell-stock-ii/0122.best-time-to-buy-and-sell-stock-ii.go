@@ -7,7 +7,7 @@ package problem0122
 
 // 注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。
 
-// 分步累加利润
+// 分步累加利润（贪心算法）
 // https://programmercarl.com/0122.%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAII.html
 func maxProfit(prices []int) int {
 	ans := 0

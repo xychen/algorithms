@@ -9,7 +9,31 @@ import "sort"
 
 // 给你一个数组 points ，其中 points [i] = [xstart,xend] ，返回引爆所有气球所必须射出的最小弓箭数。
 
+// 好理解
 func findMinArrowShots(points [][]int) int {
+	// xstart升序排序
+	sort.Slice(points, func(i, j int) bool {
+		return points[i][0] < points[j][0]
+	})
+	res := 1
+	for i := 1; i < len(points); i++ {
+		if points[i][0] <= points[i-1][1] {
+			points[i][1] = min(points[i-1][1], points[i][1])
+		} else {
+			res++
+		}
+	}
+	return res
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+func findMinArrowShots2(points [][]int) int {
 	// 按照xend 递增排序
 	sort.Slice(points, func(i, j int) bool {
 		return points[i][1] < points[j][1]
