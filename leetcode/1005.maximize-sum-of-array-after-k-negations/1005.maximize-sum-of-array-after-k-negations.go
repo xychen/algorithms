@@ -11,27 +11,19 @@ import (
 )
 
 func largestSumAfterKNegations(nums []int, k int) int {
-	// 按绝对值从大到小排序
 	sort.Slice(nums, func(i, j int) bool {
-		return math.Abs(float64(nums[i])) > math.Abs(float64(nums[j]))
+		return math.Abs(float64(nums[i])) < math.Abs(float64(nums[j]))
 	})
-	n := len(nums)
-	for i := 0; i < n && k > 0; i++ {
-		if nums[i] < 0 {
+	ans := 0
+	for i := len(nums) - 1; i >= 0; i-- {
+		if nums[i] < 0 && k > 0 {
 			nums[i] = -nums[i]
 			k--
 		}
+		ans += nums[i]
 	}
 	if k%2 == 1 {
-		nums[n-1] = -nums[n-1]
-	}
-	return sum(nums)
-}
-
-func sum(nums []int) int {
-	ans := 0
-	for _, n := range nums {
-		ans += n
+		ans -= nums[0] * 2
 	}
 	return ans
 }
