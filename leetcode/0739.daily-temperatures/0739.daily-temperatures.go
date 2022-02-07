@@ -50,3 +50,18 @@ func (s *stack) Pop() int {
 func (s *stack) Top() int {
 	return s.stack[len(s.stack)-1]
 }
+
+func dailyTemperatures2(temperatures []int) []int {
+	stack := make([]int, 0, len(temperatures))
+	ans := make([]int, len(temperatures))
+	for i := len(temperatures) - 1; i >= 0; i-- {
+		for len(stack) > 0 && temperatures[stack[len(stack)-1]] <= temperatures[i] {
+			stack = stack[:len(stack)-1]
+		}
+		if len(stack) > 0 {
+			ans[i] = stack[len(stack)-1] - i
+		}
+		stack = append(stack, i)
+	}
+	return ans
+}

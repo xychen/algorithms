@@ -2,12 +2,68 @@ package problem0347
 
 // 347. 前 K 个高频元素
 
+/**************使用快排partition思想********************/
+
+type node struct {
+	key int
+	val int
+}
+
+func topKFrequent(nums []int, k int) []int {
+	ht := make(map[int]int)
+	for _, num := range nums {
+		ht[num]++
+	}
+	nodeList := make([]node, len(ht))
+	i := 0
+	for k, v := range ht {
+		nodeList[i] = node{key: k, val: v}
+		i++
+	}
+	left, right := 0, len(nodeList)-1
+	for {
+		index := partition(nodeList, left, right)
+		if index == k-1 {
+			break
+		}
+		if index > k-1 {
+			right = index - 1
+		} else if index < k-1 {
+			left = index + 1
+		}
+	}
+	// fmt.Println(nodeList)
+	res := make([]int, k)
+	for i := 0; i < k; i++ {
+		res[i] = nodeList[i].key
+	}
+	return res
+}
+
+func partition(nodeList []node, left, right int) int {
+	guardNode := nodeList[left]
+	// 大的等于的放左边，小的放右边
+	for left < right {
+		for left < right && nodeList[right].val <= guardNode.val {
+			right--
+		}
+		nodeList[left] = nodeList[right]
+		for left < right && nodeList[left].val > guardNode.val {
+			left++
+		}
+		nodeList[right] = nodeList[left]
+	}
+	nodeList[left] = guardNode
+	return left
+}
+
+/**************小顶堆实现方式********************/
 type heapNode struct {
 	num int
 	c   int
 }
 
-func topKFrequent(nums []int, k int) []int {
+func topKFrequent2(nums []int, k int) []int {
 	ht := make(map[int]int)
 	for _, num := range nums {
 		ht[num]++

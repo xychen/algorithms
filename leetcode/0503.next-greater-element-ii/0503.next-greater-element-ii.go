@@ -51,3 +51,22 @@ func nextGreaterElements(nums []int) []int {
 	}
 	return ans
 }
+
+func nextGreaterElements2(nums []int) []int {
+	n := len(nums)
+	ans := make([]int, n)
+	stack := make([]int, 0)
+	for i := 2*n - 1; i >= 0; i-- {
+		// realIndex := i % n
+		for len(stack) > 0 && stack[len(stack)-1] <= nums[i%n] {
+			stack = stack[:len(stack)-1]
+		}
+		if len(stack) > 0 {
+			ans[i%n] = stack[len(stack)-1]
+		} else {
+			ans[i%n] = -1
+		}
+		stack = append(stack, nums[i%n])
+	}
+	return ans
+}
