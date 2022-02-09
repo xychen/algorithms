@@ -8,6 +8,8 @@
   - [动态规划](#动态规划)
   - [贪心算法](#贪心算法)
   - [数组、链表、哈希表、字符串](#数组链表哈希表字符串)
+  - [栈和队列](#栈和队列)
+  - [双指针](#双指针)
   - [图](#图)
 - [参考图书](#参考图书)
 - [其它参考](#其它参考)
@@ -114,24 +116,24 @@
 
 |分类|相关题号|done|代码|备注|
 |----|----|----|----|----|
-||[455.分发饼干](https://leetcode-cn.com/problems/assign-cookies)|✅||easy|
-||[376.摆动序列](https://leetcode-cn.com/problems/wiggle-subsequence)|✅|||
+||[455.分发饼干](https://leetcode-cn.com/problems/assign-cookies)|✅||easy，排序|
+||[376.摆动序列](https://leetcode-cn.com/problems/wiggle-subsequence)|✅||找峰、谷|
 ||[53.最大子序和](https://leetcode-cn.com/problems/maximum-subarray)|✅||easy|
 ||[122.买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii)|✅||1.可以使用贪心（找低谷和峰值）<br> 2.使用动态规划|
-||[55.跳跃游戏](https://leetcode-cn.com/problems/jump-game)|✅||注意终止条件|
-||[45.跳跃游戏 II](https://leetcode-cn.com/problems/jump-game-ii)|✅||代码随想录的方法一好理解一点|
-||[1005.K 次取反后最大化的数组和](https://leetcode-cn.com/problems/maximize-sum-of-array-after-k-negations)|✅||easy|
-||[134.加油站](https://leetcode-cn.com/problems/gas-station)|✅||有点小技巧|
-||[135.分发糖果](https://leetcode-cn.com/problems/candy)|||hard|
+||[55.跳跃游戏](https://leetcode-cn.com/problems/jump-game)|✅||使用cover解，注意终止条件|
+||[45.跳跃游戏 II](https://leetcode-cn.com/problems/jump-game-ii)|✅||使用cover、nextCover，转化的时候+1操作|
+||[1005.K 次取反后最大化的数组和](https://leetcode-cn.com/problems/maximize-sum-of-array-after-k-negations)|✅||按照绝对值排序，从后往前遍历，将负数取反；如果k还大于0且k%2==1，则取最小的正数取反|
+||[134.加油站](https://leetcode-cn.com/problems/gas-station)|✅||大前提：油量和>使用和；i从0累加rest[i](gas[i]-cost[i]),和为curSum，一旦curSum小于0说明[0,i]区间的位置不能作为起始位置，起始维中从i+1开始，再重新计算curSum。为什么从i+1开始？i之前有多少负数，i之后就有对应的正数（因为大前提）|
+||[135.分发糖果](https://leetcode-cn.com/problems/candy)|||hard，初始化结果数组为1，先从左往右遍历，如果右边孩子评分搞，则candyVec[i]=candyVec[i-1]+1,然后从右往左遍历，如果左边孩子评分高，则candyVec[i]=max(candyVec[i+1]+1, candyVec[i])，最后糖果数量相加|
 ||[860.柠檬水找零](https://leetcode-cn.com/problems/lemonade-change)|✅||easy|
 ||[406.根据身高重建队列](https://leetcode-cn.com/problems/queue-reconstruction-by-height)|✅||有点难度|
-||[452.用最少数量的箭引爆气球](https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons)|✅||无交集的数量 => 放箭的数量|
-||[435.无重叠区间](https://leetcode-cn.com/problems/non-overlapping-intervals)|✅||总集合数-无交集的数量 =>移除的数量|
-||[763.划分字母区间](https://leetcode-cn.com/problems/partition-labels)|✅|||
-||[56.合并区间](https://leetcode-cn.com/problems/merge-intervals)|✅|||
-||[738.单调递增的数字](https://leetcode-cn.com/problems/monotone-increasing-digits)|✅|||
+||[452.用最少数量的箭引爆气球](https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons)|✅||无交集的数量 => 放箭的数量，先排序|
+|☆|[435.无重叠区间](https://leetcode-cn.com/problems/non-overlapping-intervals)|✅||有点难度，按照右边界排序，前一个的end和下一个的start没有重合，说明非交叉，每次取非交叉区间的时候，都是可右边界最小的来做分割点。区间总数-非交叉区间的个数 => 要移除的区间个数|
+||[763.划分字母区间](https://leetcode-cn.com/problems/partition-labels)|✅||1.先遍历一遍找到每个字母的最远边界；2.再次遍历，如果下标和最远边界相等，则是一个分界点|
+||[56.合并区间](https://leetcode-cn.com/problems/merge-intervals)|✅||排序+合并|
+||[738.单调递增的数字](https://leetcode-cn.com/problems/monotone-increasing-digits)|✅||1.如果strNum[i-1]>strNum[i],则strNum[i-1]=strNum[i-1]-1, strNum[i]=9;2.要从后往前遍历;3.一旦出现i变9的情况，i后边的数字都要直接变9|
 ||[714.买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee)|✅||参考：[122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/) 的动归解法<br>1.可以使用贪心（难理解）<br>2.使用动态规划|
-||[968.监控二叉树](https://leetcode-cn.com/problems/binary-tree-cameras)|✅||hard|
+||[968.监控二叉树](https://leetcode-cn.com/problems/binary-tree-cameras)|||hard|
 
 ### 数组、链表、哈希表、字符串
 
@@ -170,6 +172,28 @@
 |字符串|[28.实现 strStr()](https://leetcode-cn.com/problems/implement-strstr)|||KMP|
 |字符串|[459.重复的子字符串](https://leetcode-cn.com/problems/repeated-substring-pattern)|||KMP|
 
+### 栈和队列
+
+[栈和队列leetcode题单](https://leetcode-cn.com/problem-list/eDUdhG7b)
+|分类|相关题号|done|代码|备注|
+|----|----|----|----|----|
+||[232. 用栈实现队列](https://leetcode-cn.com/problems/implement-queue-using-stacks/)|✅|||
+||[225. 用队列实现栈](https://leetcode-cn.com/problems/implement-stack-using-queues/)|✅|||
+|栈|[20. 有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)|✅|||
+|栈|[150. 逆波兰表达式求值](https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/)|✅|||
+|单调队列|[239. 滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/)|✅||push x的时候，将x与队尾元素比较，如果队尾元素小于x，则不断删除队尾元素，使队列保持单调递减；pop的时候将nums[i-k+1]和队头元素比较，相等时才删除|
+|单调栈|[496. 下一个更大元素 I](https://leetcode-cn.com/problems/next-greater-element-i/)|✅|||
+|单调栈|[739. 每日温度](https://leetcode-cn.com/problems/daily-temperatures/)|✅|||
+|单调栈|[503. 下一个更大元素 II](https://leetcode-cn.com/problems/next-greater-element-ii/)|✅|||
+|优先队列|[347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/)|✅||前k个高频元素（不是大小的top k），使用partition的思想，堆的方式代码不好记|
+
+
+### 双指针
+[双指针leetcode题单](https://leetcode-cn.com/problem-list/hRlpbXao)
+|分类|相关题号|done|代码|备注|
+|----|----|----|----|----|
+|双指针|[42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/)||||
+|双指针|[11. 盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/)||||
 
 ### 图
 
@@ -179,11 +203,15 @@
 |----|----|----|----|----|
 ||[133. 克隆图](https://leetcode-cn.com/problems/clone-graph/)|||队列+hashtable|
 |岛屿数量|[138. 复制带随机指针的链表](https://leetcode-cn.com/problems/copy-list-with-random-pointer/)|||队列+hashtable|
-|岛屿数量|[200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/)|||图+连通分量|
+|岛屿数量|[200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/)|✅||DFS，遇到岛屿则全淹没|
 |岛屿数量|[547. 省份数量](https://leetcode-cn.com/problems/number-of-provinces/)|||图+连通分量|
-|岛屿数量|[695. 岛屿的最大面积](https://leetcode-cn.com/problems/max-area-of-island/)|||图+连通分量|
+|岛屿数量|~~ [694. 不同岛屿的数量](https://leetcode-cn.com/problems/number-of-distinct-islands/) ~~||||
+|岛屿数量|[695. 岛屿的最大面积](https://leetcode-cn.com/problems/max-area-of-island/)|✅||DFS|
 |岛屿数量|[733. 图像渲染](https://leetcode-cn.com/problems/flood-fill/)|||图+连通分量|
 |岛屿数量|[827. 最大人工岛](https://leetcode-cn.com/problems/making-a-large-island/)|||图+连通分量|
+|岛屿数量|[1020.飞地的数量](https://leetcode-cn.com/problems/number-of-enclaves/)||||
+|岛屿数量|[1254. 统计封闭岛屿的数目](https://leetcode-cn.com/problems/number-of-closed-islands/)|✅||先把4个边界淹掉，在计算岛屿数量，则是封闭的岛屿数量|
+|岛屿数量|[1905. 统计子岛屿](https://leetcode-cn.com/problems/count-sub-islands/)|✅||先把grid2中肯定不是子岛屿（grid2[i][j] == 1 && grid1[i][j] == 0）的岛屿淹掉|
 |岛屿数量|[1162. 地图分析](https://leetcode-cn.com/problems/as-far-from-land-as-possible/)|||图+连通分量|
 ||[841. 钥匙和房间](https://leetcode-cn.com/problems/keys-and-rooms/)|||DFS+连通分量|
 ||[1202. 交换字符串中的元素](https://leetcode-cn.com/problems/smallest-string-with-swaps/)|||DFS+连通分量|
