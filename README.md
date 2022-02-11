@@ -11,6 +11,7 @@
   - [栈和队列](#栈和队列)
   - [双指针](#双指针)
   - [图](#图)
+  - [其他](#其他)
 - [参考图书](#参考图书)
 - [其它参考](#其它参考)
 
@@ -249,6 +250,18 @@
 ||[980. 不同路径 III](https://leetcode-cn.com/problems/unique-paths-iii/)|||哈密顿路径|
 ||[996. 正方形数组的数目](https://leetcode-cn.com/problems/number-of-squareful-arrays/)|||哈密顿路径|
 ||[959. 由斜杠划分区域](https://leetcode-cn.com/problems/regions-cut-by-slashes/)|||并查集/图+CCs|
+
+### 其他
+
+[其他类型leetcode题单](https://leetcode-cn.com/problem-list/ezM46lve)
+|分类|相关题号|done|代码|备注|
+|----|----|----|----|----|
+|前缀树|[208. 实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)|✅|||
+|前缀树|[648. 单词替换](https://leetcode-cn.com/problems/replace-words/)||||
+|前缀树|[211. 添加与搜索单词 - 数据结构设计](https://leetcode-cn.com/problems/design-add-and-search-words-data-structure/)||||
+|前缀树|[677. 键值映射](https://leetcode-cn.com/problems/map-sum-pairs/)||||
+||[]()||||
+
 
 ## 参考图书
 - [《代码随想录》](https://book.douban.com/subject/35680544/)
