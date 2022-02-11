@@ -192,8 +192,8 @@
 [双指针leetcode题单](https://leetcode-cn.com/problem-list/hRlpbXao)
 |分类|相关题号|done|代码|备注|
 |----|----|----|----|----|
-|双指针|[42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/)||||
-|双指针|[11. 盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/)||||
+|双指针|[42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/)|✅||方法一：提前计算好lmax、rmax数组，空间复杂度O(n)；方法二：同步计算lmax和rmax，空间复杂度O(1)|
+|双指针|[11. 盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/)|✅||计算面积，求最大|
 
 ### 图
 
