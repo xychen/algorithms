@@ -146,7 +146,7 @@
 |数组|[27.移除元素](https://leetcode-cn.com/problems/remove-element)|✅||easy|
 |数组|[977.有序数组的平方](https://leetcode-cn.com/problems/squares-of-a-sorted-array)|✅||easy|
 |数组|[209.长度最小的子数组](https://leetcode-cn.com/problems/minimum-size-subarray-sum)|✅||双指针|
-|数组|[59.螺旋矩阵 II](https://leetcode-cn.com/problems/spiral-matrix-ii)|✅|||
+|数组|[59.螺旋矩阵 II](https://leetcode-cn.com/problems/spiral-matrix-ii)|✅||坚持所有循环都是左开右闭|
 |数组|[31.下一个排列](https://leetcode-cn.com/problems/next-permutation/)|✅||跟排列有点关系|
 |数组|[169.多数元素](https://leetcode-cn.com/problems/majority-element)|✅|||
 |----|||||
@@ -162,6 +162,8 @@
 |哈希表|[349.两个数组的交集](https://leetcode-cn.com/problems/intersection-of-two-arrays)|✅||easy|
 |哈希表|[202.快乐数](https://leetcode-cn.com/problems/happy-number)|✅||easy|
 |哈希表|[1.两数之和](https://leetcode-cn.com/problems/two-sum)|✅||easy|
+|哈希表|[15. 三数之和](https://leetcode-cn.com/problems/3sum/)|✅||通用解法，参考：https://mp.weixin.qq.com/s/fSyJVvggxHq28a0SdmZm6Q|
+|哈希表|[18. 四数之和](https://leetcode-cn.com/problems/4sum/)|✅||通用解法，参考：https://mp.weixin.qq.com/s/fSyJVvggxHq28a0SdmZm6Q|
 |哈希表|[454.四数相加 II](https://leetcode-cn.com/problems/4sum-ii)|✅|||
 |哈希表|[383.赎金信](https://leetcode-cn.com/problems/ransom-note)|✅||easy|
 |----|||||
@@ -182,7 +184,7 @@
 ||[225. 用队列实现栈](https://leetcode-cn.com/problems/implement-stack-using-queues/)|✅|||
 |栈|[20. 有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)|✅|||
 |栈|[150. 逆波兰表达式求值](https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/)|✅|||
-|单调队列|[239. 滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/)|✅||push x的时候，将x与队尾元素比较，如果队尾元素小于x，则不断删除队尾元素，使队列保持单调递减；pop的时候将nums[i-k+1]和队头元素比较，相等时才删除|
+|单调队列|[239. 滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/)|✅||hard,push x的时候，将x与队尾元素比较，如果队尾元素小于x，则不断删除队尾元素，使队列保持单调递减；pop的时候将nums[i-k+1]和队头元素比较，相等时才删除|
 |单调栈|[496. 下一个更大元素 I](https://leetcode-cn.com/problems/next-greater-element-i/)|✅|||
 |单调栈|[739. 每日温度](https://leetcode-cn.com/problems/daily-temperatures/)|✅|||
 |单调栈|[503. 下一个更大元素 II](https://leetcode-cn.com/problems/next-greater-element-ii/)|✅|||
@@ -203,17 +205,17 @@
 |分类|相关题号|done|代码|备注|
 |----|----|----|----|----|
 ||[133. 克隆图](https://leetcode-cn.com/problems/clone-graph/)|||队列+hashtable|
-|岛屿数量|[138. 复制带随机指针的链表](https://leetcode-cn.com/problems/copy-list-with-random-pointer/)|||队列+hashtable|
+||[138. 复制带随机指针的链表](https://leetcode-cn.com/problems/copy-list-with-random-pointer/)|||队列+hashtable|
 |岛屿数量|[200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/)|✅||DFS，遇到岛屿则全淹没|
-|岛屿数量|[547. 省份数量](https://leetcode-cn.com/problems/number-of-provinces/)|||图+连通分量|
 |岛屿数量|~~ [694. 不同岛屿的数量](https://leetcode-cn.com/problems/number-of-distinct-islands/) ~~||||
 |岛屿数量|[695. 岛屿的最大面积](https://leetcode-cn.com/problems/max-area-of-island/)|✅||DFS|
-|岛屿数量|[733. 图像渲染](https://leetcode-cn.com/problems/flood-fill/)|||图+连通分量|
-|岛屿数量|[827. 最大人工岛](https://leetcode-cn.com/problems/making-a-large-island/)|||图+连通分量|
-|岛屿数量|[1020.飞地的数量](https://leetcode-cn.com/problems/number-of-enclaves/)||||
 |岛屿数量|[1254. 统计封闭岛屿的数目](https://leetcode-cn.com/problems/number-of-closed-islands/)|✅||先把4个边界淹掉，在计算岛屿数量，则是封闭的岛屿数量|
 |岛屿数量|[1905. 统计子岛屿](https://leetcode-cn.com/problems/count-sub-islands/)|✅||先把grid2中肯定不是子岛屿（grid2[i][j] == 1 && grid1[i][j] == 0）的岛屿淹掉|
-|岛屿数量|[1162. 地图分析](https://leetcode-cn.com/problems/as-far-from-land-as-possible/)|||图+连通分量|
+|并查集|[547. 省份数量](https://leetcode-cn.com/problems/number-of-provinces/)|||图+连通分量|
+||[733. 图像渲染](https://leetcode-cn.com/problems/flood-fill/)|||图+连通分量|
+||[827. 最大人工岛](https://leetcode-cn.com/problems/making-a-large-island/)|||图+连通分量|
+||[1020.飞地的数量](https://leetcode-cn.com/problems/number-of-enclaves/)||||
+||[1162. 地图分析](https://leetcode-cn.com/problems/as-far-from-land-as-possible/)|||图+连通分量|
 ||[841. 钥匙和房间](https://leetcode-cn.com/problems/keys-and-rooms/)|||DFS+连通分量|
 ||[1202. 交换字符串中的元素](https://leetcode-cn.com/problems/smallest-string-with-swaps/)|||DFS+连通分量|
 ||[207. 课程表](https://leetcode-cn.com/problems/course-schedule/)|||拓扑排序|
