@@ -6,46 +6,40 @@ package problem0059
 // 输入：n = 3
 // 输出：[[1,2,3],[8,9,4],[7,6,5]]
 
+// 左闭右开，所有循环都按照同一个约定
 func generateMatrix(n int) [][]int {
+	loop := n / 2
+	startx, starty := 0, 0
 	res := make([][]int, n)
 	for i := 0; i < n; i++ {
 		res[i] = make([]int, n)
 	}
-	curNum := 1
-	for i := n; i > 0; i -= 2 {
-		curNum = handle(n, i, curNum, res)
+	k := 1
+	for loop > 0 {
+		i, j := startx, starty
+		for ; j < n-starty-1; j++ {
+			res[i][j] = k
+			k += 1
+		}
+		for ; i < n-startx-1; i++ {
+			res[i][j] = k
+			k += 1
+		}
+		for ; j > starty; j-- {
+			res[i][j] = k
+			k += 1
+		}
+		for ; i > startx; i-- {
+			res[i][j] = k
+			k += 1
+		}
+
+		startx += 1
+		starty += 1
+		loop -= 1
+	}
+	if n%2 == 1 {
+		res[n/2][n/2] = k
 	}
 	return res
-}
-
-func handle(N, n, start int, nums [][]int) int {
-	curNum := start
-	span := (N - n) / 2
-	// 上横
-	for j := 0; j < n; j++ {
-		nums[span][j+span] = curNum
-		curNum++
-	}
-	if n == 1 {
-		return curNum
-	}
-	// 右竖(短)
-	for i := 1; i < n-1; i++ {
-		nums[span+i][span+n-1] = curNum
-		curNum++
-	}
-
-	// 下横
-	for j := n - 1; j >= 0; j-- {
-		nums[span+n-1][j+span] = curNum
-		curNum++
-	}
-
-	// 左竖（短）
-	for i := n - 2; i > 0; i-- {
-		nums[span+i][span] = curNum
-		curNum++
-	}
-
-	return curNum
 }
